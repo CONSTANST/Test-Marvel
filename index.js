@@ -1,0 +1,130 @@
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+
+const app = express();
+app.use(express.json());
+app.use(cors());
+const comicsRoute = require("");
+const charactersRoute = require("");
+app.use(comicsRoute);
+app.use(charactersRoute);
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+// app.get("/comics", async (req, res) => {
+//   try {
+//     // res.status(200).json("hello");
+//     const {limit = 100, skip = 0, title = ""} = req.query;
+//     const apikey = process.env.MARVEL_API_KEY;
+
+//     const response = await axios.get(
+//       "https://lereacteur-marvel-api.herokuapp.com/comics",
+//       {
+//         params: {
+//           apiKey: apikey,
+//           limit,
+//           skip,
+//           title,
+//         },
+//       }
+//     );
+
+//     res.status(200).json(response.data);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send(error);
+//   }
+// });
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+// app.get("/characters", async (req, res) => {
+//   try {
+//     // res.status(200).json("hello");
+//     const apikey = process.env.MARVEL_API_KEY;
+//     const {name = "", limit = 100, skip = 0} = req.query;
+//     const MARVEL_API_URL =
+//       "https://lereacteur-marvel-api.herokuapp.com/characters";
+//     const response = await axios.get(MARVEL_API_URL, {
+//       params: {
+//         apiKey: apikey,
+//         limit,
+//         skip,
+//         name,
+//       },
+//     });
+
+//     const characters = response.data;
+//     res.status(200).json(characters);
+//   } catch (error) {
+//     res.status(500).json({error: error});
+//   }
+// });
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+// app.get("/character/:characterId", async (req, res) => {
+//   try {
+//     // res.status(200).json("hello");
+//     const apikey = process.env.MARVEL_API_KEY;
+//     console.log(req.params);
+
+//     const characterId = req.params.characterId;
+//     console.log(characterId);
+
+//     const response = await axios.get(
+//       `https://lereacteur-marvel-api.herokuapp.com/character/${characterId}?apiKey=${apikey}`
+//     );
+//     const character = response.data;
+//     res.json(character);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("Error retrieving character");
+//   }
+// });
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+// app.get("/comics/:characterId", async (req, res) => {
+//   try {
+//     // res.status(200).json("hello");
+//     // console.log(req.params);
+//     const characterId = req.params.characterId;
+//     const apikey = process.env.MARVEL_API_KEY;
+//     const response = await axios.get(
+//       `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${apikey}&characterId=${characterId}`
+//     );
+//     // console.log(response.data);
+//     const comics = response.data;
+//     res.json(comics);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("Error retrieving comics");
+//   }
+// });
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+app.get("/hello", (req, res) => {
+  res.json({message: "Hello"});
+});
+app.get("*", (req, res) => {
+  res.json({message: "This page doesn't exist"});
+});
+app.listen(3000, () => {
+  console.log("Server has started");
+});
