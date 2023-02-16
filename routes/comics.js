@@ -2,23 +2,17 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 
+const apikey = process.env.MARVEL_API_KEY;
+
 router.get("/comics", async (req, res) => {
   try {
     // res.status(200).json("hello");
-    const {limit = 100, skip = 0, title = ""} = req.query;
-    const apikey = process.env.MARVEL_API_KEY;
+    const limit = req.query.limit || "100";
+    const skip = req.query.skip || "";
+    const title = req.query.title || "";
 
-    const response = await axios.get(
-      "https://lereacteur-marvel-api.herokuapp.com/comics",
-      {
-        params: {
-          apiKey: apikey,
-          limit,
-          skip,
-          title,
-        },
-      }
-    );
+    const MARVEL_API_URL = `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${apikey}&title=${title}&skip=${skip}&limit=${limit}`;
+    const response = await axios.get(MARVEL_API_URL);
 
     res.status(200).json(response.data);
   } catch (error) {
@@ -32,7 +26,7 @@ router.get("/comics/:characterId", async (req, res) => {
     // res.status(200).json("hello");
     // console.log(req.params);
     const characterId = req.params.characterId;
-    const apikey = process.env.MARVEL_API_KEY;
+
     const response = await axios.get(
       `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${apikey}&characterId=${characterId}`
     );

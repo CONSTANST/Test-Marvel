@@ -12,14 +12,7 @@ router.get("/characters", async (req, res) => {
     const skip = req.query.skip || "";
 
     const MARVEL_API_URL = `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${apikey}&name=${name}&skip=${skip}&limit=${limit}`;
-    const response = await axios.get(MARVEL_API_URL, {
-      params: {
-        apiKey: apikey,
-        limit,
-        skip,
-        name,
-      },
-    });
+    const response = await axios.get(MARVEL_API_URL);
 
     const characters = response.data;
     res.status(200).json(characters);
