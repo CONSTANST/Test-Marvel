@@ -5,8 +5,8 @@ const cors = require("cors");
 const app = express();
 app.use(express.json());
 app.use(cors());
-const comicsRoute = require("");
-const charactersRoute = require("");
+const comicsRoute = require("./routes/comics");
+const charactersRoute = require("./routes/characters");
 app.use(comicsRoute);
 app.use(charactersRoute);
 
@@ -74,7 +74,7 @@ app.use(charactersRoute);
 // app.get("/character/:characterId", async (req, res) => {
 //   try {
 //     // res.status(200).json("hello");
-//     const apikey = process.env.MARVEL_API_KEY;
+//     const apikey = process.env.process.env.MARVEL_API_KEY;
 //     console.log(req.params);
 
 //     const characterId = req.params.characterId;
@@ -125,6 +125,6 @@ app.get("/hello", (req, res) => {
 app.get("*", (req, res) => {
   res.json({message: "This page doesn't exist"});
 });
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server has started");
 });
