@@ -6,12 +6,12 @@ const uid2 = require("uid2");
 const SHA256 = require("crypto-js/sha256");
 const encBase64 = require("crypto-js/enc-base64");
 
-const filUpload = require("express-fileupload");
+const fileUpload = require("express-fileupload");
 
 const User = require("../model/User");
 
 // route singup//
-router.post("/user/singup", filUpload(), async (req, res) => {
+router.post("/user/singup", fileUpload(), async (req, res) => {
   try {
     //* Recherche dans la Base de Donnée pour l'email reçu
     const user = await User.findOne({email: req.body.email});
@@ -80,3 +80,4 @@ router.post("/user/login", async (req, res) => {
     res.json({message: error.message});
   }
 });
+module.exports = router;
