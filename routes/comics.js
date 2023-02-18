@@ -3,7 +3,7 @@ const router = express.Router();
 const axios = require("axios");
 
 const apikey = process.env.MARVEL_API_KEY;
-
+// liste des  comics
 router.get("/comics", async (req, res) => {
   try {
     // res.status(200).json("hello");
@@ -20,7 +20,7 @@ router.get("/comics", async (req, res) => {
     res.status(500).send(error);
   }
 });
-
+// 3ieme poupée russe
 router.get("/comics/:characterId", async (req, res) => {
   try {
     // res.status(200).json("hello");
