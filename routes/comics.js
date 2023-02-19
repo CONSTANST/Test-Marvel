@@ -11,8 +11,9 @@ router.get("/comics", async (req, res) => {
     const skip = req.query.skip || "";
     const title = req.query.title || "";
 
-    const MARVEL_API_URL = `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${apikey}&title=${title}&skip=${skip}&limit=${limit}`;
-    const response = await axios.get(MARVEL_API_URL);
+    const response = await axios.get(
+      `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${apikey}&title=${title}&skip=${skip}&limit=${limit}`
+    );
 
     res.status(200).json(response.data);
   } catch (error) {

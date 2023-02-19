@@ -6,12 +6,16 @@ const uid2 = require("uid2");
 const SHA256 = require("crypto-js/sha256");
 const encBase64 = require("crypto-js/enc-base64");
 
-const fileUpload = require("express-fileupload");
+// const fileUpload = require("express-fileupload");
+// const mongoose = require("mongoose");
+// mongoose.set("strictQuery", false);
+// mongoose.connect(process.env.MONGODB_URI);
 
 const User = require("../model/User");
 
 // route singup//
-router.post("/user/singup", fileUpload(), async (req, res) => {
+router.post("/user/singup", async (req, res) => {
+  console.log(req.body);
   try {
     //* Recherche dans la Base de Donnée pour l'email reçu
     const user = await User.findOne({email: req.body.email});
@@ -49,8 +53,9 @@ router.post("/user/singup", fileUpload(), async (req, res) => {
       }
     }
   } catch (error) {
+    console.log(error);
     console.log(error.message);
-    res.status(400).json({message: error.message});
+    res.status(400).json({message: error.message, error: error});
   }
 });
 
