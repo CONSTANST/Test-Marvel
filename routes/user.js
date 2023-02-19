@@ -14,7 +14,7 @@ const encBase64 = require("crypto-js/enc-base64");
 const User = require("../model/User");
 
 // route singup//
-router.post("/user/singup", async (req, res) => {
+router.post("/user/signup", async (req, res) => {
   console.log(req.body);
   try {
     //* Recherche dans la Base de Donnée pour l'email reçu
